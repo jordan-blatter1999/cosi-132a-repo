@@ -61,7 +61,6 @@ class LogisticRegression:
 
     def featurize(self, document):
         vector = np.zeros(self.n_features + 1)
-        # your code here
         for token in document:
             if token in self.feature_dict:
                 vector[self.feature_dict[token]] = 1
@@ -115,7 +114,7 @@ class LogisticRegression:
         results = defaultdict(dict)
         filenames, classes, documents = self.load_data(dev_set)
         for name in filenames:
-            # get most likely class (recall that P(y=1|x) = y_hat)
+            # get most likely class
             results[name]["correct"] = classes[name]
 
             if expit(np.dot((documents[name]), self.theta)) > 0.5:
@@ -126,7 +125,6 @@ class LogisticRegression:
         return results
 
     def evaluate(self, results):
-        # you can copy and paste your code from HW1 here
         confusion_matrix = np.zeros((len(self.class_dict), len(self.class_dict)))
 
         for doc in results:
@@ -190,9 +188,6 @@ class LogisticRegression:
 
 if __name__ == '__main__':
     lr = LogisticRegression(n_features=4)
-    # make sure these point to the right directories
     lr.train('movie_reviews/train', batch_size=3, n_epochs=10, eta=0.1)
-    # lr.train('movie_reviews_small/train', batch_size=3, n_epochs=1, eta=0.1)
     results = lr.test('movie_reviews/dev')
-    # results = lr.test('movie_reviews_small/test')
     lr.evaluate(results)
