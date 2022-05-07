@@ -187,7 +187,7 @@ class LogisticRegression:
 
 
 if __name__ == '__main__':
-    lr = LogisticRegression(n_features=4)
+    lr = LogisticRegression(n_features=0)
     lr.train('movie_reviews/train', batch_size=3, n_epochs=10, eta=0.1)
     results = lr.test('movie_reviews/dev')
     lr.evaluate(results)
